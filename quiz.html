@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz App</title>
+  <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+  <h1 class="greating">Hello!</h1>
+  <h2 class="perpose">Test Your Self Here And Check If You Are Ready For Your Upcoming Test.</h2>
+
+  <div class="center-box">
+    <div class="rightAnswer"></div>
+    <div class="wrongAnswer"></div>
+
+    <div class="quiz-app">
+      <h2 id="quiz-app"> Quiz Application</h2>
+    </div>
+
+    <div class="question-sec">
+      <div class="questions">
+        <h3 id="question">Q: What is your Name?</h3>
+        <!-- <div><button type="button" class="lower-btn next-btn">Next</button></div> -->
+      </div>
+      <div class="options">
+        <li><button type="button" class="option1 option"> Option 1 </button></li>
+        <li><button type="button" class="option2 option"> Option 2 </button></li>
+        <li><button type="button" class="option3 option"> Option 3 </button></li>
+        <li><button type="button" class="option4 option"> Option 4 </button></li>
+      </div>
+    </div>
+
+    <div class="lower-sec">
+      <ul>
+        <li><button type="button" class="lower-btn next-btn">Start</button></li>
+        <li><button type="button" class="lower-btn count-btn"></button></li>
+        <li><button type="button" class="lower-btn Wrongquestions">Check Wrong questions</button></li>
+        <li><button type="button" class="lower-btn Rightquestions">Check Right Questions</button></li>
+        <li><button type="button" class="lower-btn limit-btn">Set a Limit</button></li>
+        <li><button type="button" class="lower-btn Result-btn">Check Score</button></li>
+        <li><button type="button" class="lower-btn reset-btn">Reset All</button></li>
+
+
+      </ul>
+    </div>
+  </div>
+  
+
+  <div class="toast-message"> Toast Message</div>
+
+   
+  <script src="questionsApi.js"></script>
+  <script src="quize.js"></script>
+</body>
+</html>
+
+
+<script>
+const questionsAPI = [
+  // Biology
+  {
+    question: "Which organ produces insulin?",
+    right: "Pancreas",
+    wrong: "Liver",
+    wrong2: "Gallbladder",
+    wrong3: "Stomach"
+  },
+  {
+    question: "What is the functional unit of the kidney?",
+    right: "Nephron",
+    wrong: "Neuron",
+    wrong2: "Alveolus",
+    wrong3: "Lobule"
+  },
+  {
+    question: "Which hormone is primarily responsible for the regulation of blood calcium levels?",
+    right: "Parathyroid hormone",
+    wrong: "Insulin",
+    wrong2: "Cortisol",
+    wrong3: "Growth hormone"
+  },
+  {
+    question: "The part of the hindbrain that is responsible for regulating breathing patterns is the:",
+    right: "Medulla oblongata",
+    wrong: "Cerebellum",
+    wrong2: "Brain stem",
+    wrong3: "Pons"
+  },
+  {
+    question: "What is the largest lymphoid tissue in the human body?",
+    right: "Spleen",
+    wrong: "Tonsils",
+    wrong2: "Liver",
+    wrong3: "Bone marrow"
+  },
+  {
+    question: "Which of the following is the respiratory fuel?",
+    right: "Glucose",
+    wrong: "Sucrose",
+    wrong2: "Galactose",
+    wrong3: "Mannose"
+  },
+  {
+    question: "Carbon dioxide enters a leaf through which structure?",
+    right: "Stomata",
+    wrong: "Chloroplasts",
+    wrong2: "Mesophyll",
+    wrong3: "Thylakoids"
+  },
+  {
+    question: "Which of the following is not a product of glycolysis?",
+    right: "Acetyl CoA",
+    wrong: "ATP",
+    wrong2: "NADH",
+    wrong3: "Pyruvate"
+  },
+  {
+    question: "Rugae are found in which organ of the digestive system?",
+    right: "Stomach",
+    wrong: "Small intestine",
+    wrong2: "Colon",
+    wrong3: "Oesophagus"
+  },
+  {
+    question: "Which of the following statements about human heart is true?",
+    right: "The left ventricle is separated from the left atrium by a bicuspid valve.",
+    wrong: "The left atrial wall is about the same thickness as the right atrium.",
+    wrong2: "The right heart receives oxygenated blood from the four pulmonary veins.",
+    wrong3: "The Purkinje system allows the excitation of ventricular muscle fibres to occur at different times."
+  },
+  {
+    question: "Absorption of food is greatest in which part of the small intestine?",
+    right: "Jejunum",
+    wrong: "Duodenum",
+    wrong2: "Ileum",
+    wrong3: "Colon"
+  },
+  {
+    question: "In muscle contraction, which ion plays a critical role in the sliding filament mechanism?",
+    right: "Calcium",
+    wrong: "Sodium",
+    wrong2: "Potassium",
+    wrong3: "Magnesium"
+  },
+  {
+    question: "When a neuron's membrane potentials are between –70 mV and –90 mV, it is in a state of:",
+    right: "Hyperpolarization",
+    wrong: "Depolarization",
+    wrong2: "Repolarization",
+    wrong3: "No polarization"
+  },
+  {
+    question: "What type of joint does the humerus make with the scapula?",
+    right: "Ball and socket joint",
+    wrong: "Hinge joint",
+    wrong2: "Pivot joint",
+    wrong3: "Gliding joint"
+  },
+  {
+    question: "A spontaneous process is:",
+    right: "Unidirectional and irreversible",
+    wrong: "Unidirectional and real",
+    wrong2: "Irreversible and real",
+    wrong3: "All of the above"
+  },
+  {
+    question: "Which of the following is a type of natural selection?",
+    right: "Stabilizing selection",
+    wrong: "Genetic drift",
+    wrong2: "Gene flow",
+    wrong3: "Mutation"
+  },
+  {
+    question: "During photosynthesis, the conversion of light energy into chemical energy occurs in the:",
+    right: "Thylakoid membrane",
+    wrong: "Stroma",
+    wrong2: "Cytoplasm",
+    wrong3: "Cell wall"
+  },
+  {
+    question: "Which of the following conveys the longest-lasting immunity?",
+    right: "Naturally acquired active immunity",
+    wrong: "Naturally acquired passive immunity",
+    wrong2: "Artificially acquired active immunity",
+    wrong3: "Artificially acquired passive immunity"
+  },
+  {
+    question: "The fluid mosaic model of the cell membrane describes its components as a mosaic of:",
+    right: "Proteins and lipids",
+    wrong: "Carbohydrates and proteins",
+    wrong2: "Lipids and carbohydrates",
+    wrong3: "Nucleic acids and proteins"
+  },
+  {
+    question: "Which of the following is the most effective way to prevent the spread of infectious diseases?",
+    right: "Handwashing",
+    wrong: "Antibiotics",
+    wrong2: "Vaccines",
+    wrong3: "Disinfectants"
+  },
+
+  // Chemistry
+  {
+    question: "Which of the following represents a Lewis acid?",
+    right: "BF₃",
+    wrong: "NH₃",
+    wrong2: "OH⁻",
+    wrong3: "CH₄"
+  },
+  {
+    question: "The IUPAC name for the compound CH₃CH₂OH is:",
+    right: "Ethanol",
+    wrong: "Methanol",
+    wrong2: "Propanol",
+    wrong3: "Butanol"
+  },
+  {
+    question: "What is the hybridization of carbon in ethene (C₂H₄)?",
+    right: "sp²",
+    wrong: "sp",
+    wrong2: "sp³",
+    wrong3: "sp³d"
+  },
+  {
+    question: "The efficiency of a chemical reaction is expressed as:",
+    right: "% yield",
+    wrong: "Theoretical yield",
+    wrong2: "Actual yield",
+    wrong3: "Maximum yield"
+  },
+  {
+    question: "Which of the following is the strongest hydrogen bond?",
+    right: "F—H - - - F—H",
+    wrong: "N—H - - - N—H",
+    wrong2: "O—H - - - O—H",
+    wrong3: "N—H - - - O—H"
+  },
+  {
+    question: "The rate of a chemical reaction can be increased by:",
+    right: "Increasing the concentration of reactants",
+    wrong: "Decreasing the temperature",
+    wrong2: "Adding an inhibitor",
+    wrong3: "Decreasing the surface area"
+  },
+  {
+    question: "A process that absorbs heat from its surroundings is called:",
+    right: "Endothermic",
+    wrong: "Exothermic",
+    wrong2: "Spontaneous",
+    wrong3: "Non-spontaneous"
+  },
+  {
+    question: "Which of the following has the highest electronegativity?",
+    right: "Fluorine",
+    wrong: "Chlorine",
+    wrong2: "Bromine",
+    wrong3: "Iodine"
+  },
+  {
+    question: "What is the molarity of a solution containing 0.5 moles of NaCl in 2 liters of water?",
+    right: "0.25 M",
+    wrong: "0.5 M",
+    wrong2: "1.0 M",
+    wrong3: "2.0 M"
+  },
+  {
+    question: "The law that states that the volume of a gas is directly proportional to its absolute temperature at constant pressure is:",
+    right: "Charles's Law",
+    wrong: "Boyle's Law",
+    wrong2: "Avogadro's Law",
+    wrong3: "Gay-Lussac's Law"
+  },
+  {
+    question: "Which of the following is an example of an aromatic hydrocarbon?",
+    right: "Benzene",
+    wrong: "Ethane",
+    wrong2: "Ethene",
+    wrong3: "Butane"
+  },
+  {
+    question: "What is the pH of a neutral solution at 25°C?",
+    right: "7",
+    wrong: "0",
+    wrong2: "14",
+    wrong3: "Varies depending on the solution"
+  },
+  {
+    question: "A catalyst increases the rate of a reaction by:",
+    right: "Lowering the activation energy",
+    wrong: "Increasing the temperature",
+    wrong2: "Increasing the concentration of reactants",
+    wrong3: "Shifting the equilibrium"
+  },
+  {
+    question: "Which of the following is a strong acid?",
+    right: "H₂SO₄",
+    wrong: "CH₃COOH",
+    wrong2: "H₂CO₃",
+    wrong3: "H₃PO₄"
+  },
+  {
+    question: "The process of a solid changing directly into a gas is called:",
+    right: "Sublimation",
+    wrong: "Evaporation",
+    wrong2: "Condensation",
+    wrong3: "Melting"
+  },
+  {
+    question: "What is the main component of natural gas?",
+    right: "Methane",
+    wrong: "Propane",
+    wrong2: "Butane",
+    wrong3: "Ethane"
+  },
+  {
+    question: "The chemical formula for rust is:",
+    right: "Fe₂O₃.nH₂O",
+    wrong: "FeO",
+    wrong2: "Fe₃O₄",
+    wrong3: "Fe(OH)₂"
+  },
+  {
+    question: "Which of the following is a primary alcohol?",
+    right: "Ethanol",
+    wrong: "2-Propanol",
+    wrong2: "2-Methyl-2-propanol",
+    wrong3: "Butan-2-ol"
+  },
+  {
+    question: "What is the shape of a water molecule (H₂O)?",
+    right: "Bent",
+    wrong: "Linear",
+    wrong2: "Tetrahedral",
+    wrong3: "Trigonal planar"
+  },
+  {
+    question: "The process of adding a hydrogen atom to an unsaturated hydrocarbon is called:",
+    right: "Hydrogenation",
+    wrong: "Halogenation",
+    wrong2: "Polymerization",
+    wrong3: "Dehydration"
+  },
+
+  // Physics
+  {
+    question: "The SI unit of power is:",
+    right: "Watt",
+    wrong: "Joule",
+    wrong2: "Newton",
+    wrong3: "Erg"
+  },
+  {
+    question: "In a vacuum, all electromagnetic waves have the same:",
+    right: "Speed",
+    wrong: "Wavelength",
+    wrong2: "Frequency",
+    wrong3: "Amplitude"
+  },
+  {
+    question: "If the momentum of an object is doubled, its kinetic energy will:",
+    right: "Quadruple",
+    wrong: "Double",
+    wrong2: "Remain the same",
+    wrong3: "Halve"
+  },
+  {
+    question: "The time period of a simple pendulum depends on:",
+    right: "Length of the string",
+    wrong: "Mass of the bob",
+    wrong2: "Amplitude of oscillation",
+    wrong3: "Acceleration due to gravity"
+  },
+  {
+    question: "The unit of electric charge is:",
+    right: "Coulomb",
+    wrong: "Volt",
+    wrong2: "Ampere",
+    wrong3: "Ohm"
+  },
+  {
+    question: "Which of the following is not a unit of pressure?",
+    right: "Joule",
+    wrong: "Pascal",
+    wrong2: "Torr",
+    wrong3: "Bar"
+  },
+  {
+    question: "The work done by a force acting on a body is zero if:",
+    right: "The body moves perpendicular to the direction of the force",
+    wrong: "The body moves in the direction of the force",
+    wrong2: "The body does not move",
+    wrong3: "The body moves opposite to the direction of the force"
+  },
+  {
+    question: "The rate of flow of electric charge is known as:",
+    right: "Electric current",
+    wrong: "Electric potential",
+    wrong2: "Electric power",
+    wrong3: "Electric field"
+  },
+  {
+    question: "The magnetic flux through a surface is maximum when the angle between the magnetic field and the normal to the surface is:",
+    right: "0°",
+    wrong: "45°",
+    wrong2: "90°",
+    wrong3: "180°"
+  },
+  {
+    question: "The kinetic energy of a satellite in a stable orbit around the Earth is:",
+    right: "Less than its potential energy",
+    wrong: "Greater than its potential energy",
+    wrong2: "Equal to its potential energy",
+    wrong3: "Zero"
+  },
+  {
+    question: "A transformer is a device used to:",
+    right: "Change the voltage of an AC supply",
+    wrong: "Change the voltage of a DC supply",
+    wrong2: "Increase the frequency of an AC supply",
+    wrong3: "Convert AC to DC"
+  },
+  {
+    question: "What principle is the operation of a hydraulic press based on?",
+    right: "Pascal's principle",
+    wrong: "Archimedes' principle",
+    wrong2: "Bernoulli's principle",
+    wrong3: "Newton's third law"
+  },
+  {
+    question: "The process of a nucleus splitting into two or more smaller nuclei is known as:",
+    right: "Nuclear fission",
+    wrong: "Nuclear fusion",
+    wrong2: "Radioactive decay",
+    wrong3: "Chain reaction"
+  },
+  {
+    question: "Which of the following quantities is a vector?",
+    right: "Displacement",
+    wrong: "Distance",
+    wrong2: "Speed",
+    wrong3: "Work"
+  },
+  {
+    question: "A body is moving in a circular path with constant speed. What is true about it?",
+    right: "There is a net force acting towards the center",
+    wrong: "The velocity is constant",
+    wrong2: "The acceleration is zero",
+    wrong3: "The body is not accelerating"
+  },
+  {
+    question: "The phenomenon of a change in the frequency of a wave in relation to an observer who is moving relative to the wave source is called:",
+    right: "Doppler effect",
+    wrong: "Photoelectric effect",
+    wrong2: "Diffraction",
+    wrong3: "Interference"
+  },
+  {
+    question: "What is the SI unit of electric potential?",
+    right: "Volt",
+    wrong: "Watt",
+    wrong2: "Ampere",
+    wrong3: "Joule"
+  },
+  {
+    question: "The mass of an object is a measure of its:",
+    right: "Inertia",
+    wrong: "Weight",
+    wrong2: "Volume",
+    wrong3: "Density"
+  },
+  {
+    question: "Which of the following materials is a semiconductor?",
+    right: "Silicon",
+    wrong: "Copper",
+    wrong2: "Glass",
+    wrong3: "Gold"
+  },
+  {
+    question: "The property of an object to resist a change in its state of motion is called:",
+    right: "Inertia",
+    wrong: "Momentum",
+    wrong2: "Force",
+    wrong3: "Impulse"
+  },
+
+  // Biology
+  {
+    question: "Which of the following is a non-vascular plant?",
+    right: "Moss",
+    wrong: "Fern",
+    wrong2: "Pine tree",
+    wrong3: "Rose"
+  },
+  {
+    question: "The process by which plants release water vapor through their leaves is called:",
+    right: "Transpiration",
+    wrong: "Photosynthesis",
+    wrong2: "Respiration",
+    wrong3: "Osmosis"
+  },
+  {
+    question: "Which blood group is considered the universal donor?",
+    right: "O-",
+    wrong: "A+",
+    wrong2: "B-",
+    wrong3: "AB+"
+  },
+  {
+    question: "The main function of the cell wall in a plant cell is to:",
+    right: "Provide structural support",
+    wrong: "Regulate movement of substances",
+    wrong2: "Store food",
+    wrong3: "Produce energy"
+  },
+  {
+    question: "Which of the following is a primary site for cellular respiration?",
+    right: "Mitochondria",
+    wrong: "Chloroplast",
+    wrong2: "Ribosome",
+    wrong3: "Nucleus"
+  },
+  {
+    question: "Which part of the brain is responsible for controlling balance and coordination?",
+    right: "Cerebellum",
+    wrong: "Cerebrum",
+    wrong2: "Medulla oblongata",
+    wrong3: "Pons"
+  },
+  {
+    question: "What is the smallest unit of life?",
+    right: "Cell",
+    wrong: "Atom",
+    wrong2: "Molecule",
+    wrong3: "Organelle"
+  },
+  {
+    question: "The process of a cell engulfing a large particle is known as:",
+    right: "Phagocytosis",
+    wrong: "Pinocytosis",
+    wrong2: "Exocytosis",
+    wrong3: "Osmosis"
+  },
+  {
+    question: "Which type of blood vessel carries oxygenated blood away from the heart?",
+    right: "Arteries",
+    wrong: "Veins",
+    wrong2: "Capillaries",
+    wrong3: "Venules"
+  },
+  {
+    question: "What is the primary function of the stomach?",
+    right: "Digestion of proteins",
+    wrong: "Absorption of nutrients",
+    wrong2: "Digestion of fats",
+    wrong3: "Absorption of water"
+  },
+  {
+    question: "Which of the following is a fat-soluble vitamin?",
+    right: "Vitamin A",
+    wrong: "Vitamin C",
+    wrong2: "Vitamin B6",
+    wrong3: "Vitamin B12"
+  },
+  {
+    question: "The fluid that fills the space between cells and tissues is called:",
+    right: "Interstitial fluid",
+    wrong: "Blood plasma",
+    wrong2: "Cytoplasm",
+    wrong3: "Cerebrospinal fluid"
+  },
+  {
+    question: "What is the main function of red blood cells?",
+    right: "Transport oxygen",
+    wrong: "Fight infection",
+    wrong2: "Form blood clots",
+    wrong3: "Carry nutrients"
+  },
+  {
+    question: "The process by which a sperm and an egg fuse to form a zygote is called:",
+    right: "Fertilization",
+    wrong: "Meiosis",
+    wrong2: "Mitosis",
+    wrong3: "Gametogenesis"
+  },
+  {
+    question: "Which part of a flower develops into a fruit?",
+    right: "Ovary",
+    wrong: "Stamen",
+    wrong2: "Pistil",
+    wrong3: "Sepal"
+  },
+  {
+    question: "The main components of a virus are:",
+    right: "Nucleic acid and protein coat",
+    wrong: "Cell membrane and cytoplasm",
+    wrong2: "Mitochondria and nucleus",
+    wrong3: "Cell wall and capsule"
+  },
+  {
+    question: "Which of the following is a monosaccharide?",
+    right: "Glucose",
+    wrong: "Sucrose",
+    wrong2: "Lactose",
+    wrong3: "Maltose"
+  },
+  {
+    question: "The process of gene expression where DNA is used as a template to synthesize RNA is called:",
+    right: "Transcription",
+    wrong: "Translation",
+    wrong2: "Replication",
+    wrong3: "Mutation"
+  },
+  {
+    question: "Which of the following is a common cause of lung cancer?",
+    right: "Smoking",
+    wrong: "High blood pressure",
+    wrong2: "Diabetes",
+    wrong3: "Obesity"
+  },
+  {
+    question: "What is the process of generating an action potential in a neuron called?",
+    right: "Depolarization",
+    wrong: "Repolarization",
+    wrong2: "Hyperpolarization",
+    wrong3: "Polarization"
+  },
+
+  // Chemistry
+  {
+    question: "The law that relates the pressure and volume of a gas at constant temperature is:",
+    right: "Boyle's Law",
+    wrong: "Charles's Law",
+    wrong2: "Avogadro's Law",
+    wrong3: "Gay-Lussac's Law"
+  },
+  {
+    question: "Which of the following is a halogen?",
+    right: "Chlorine",
+    wrong: "Neon",
+    wrong2: "Argon",
+    wrong3: "Sodium"
+  },
+  {
+    question: "A solution with a pH of 2 is considered:",
+    right: "Strongly acidic",
+    wrong: "Weakly acidic",
+    wrong2: "Neutral",
+    wrong3: "Basic"
+  },
+  {
+    question: "What is the oxidation state of sulfur in H₂SO₄?",
+    right: "+6",
+    wrong: "+4",
+    wrong2: "+2",
+    wrong3: "-2"
+  },
+  {
+    question: "Which of the following is a noble gas?",
+    right: "Neon",
+    wrong: "Oxygen",
+    wrong2: "Nitrogen",
+    wrong3: "Hydrogen"
+  },
+  {
+    question: "The process of a gas turning into a liquid is called:",
+    right: "Condensation",
+    wrong: "Evaporation",
+    wrong2: "Sublimation",
+    wrong3: "Melting"
+  },
+  {
+    question: "What is the chemical formula for sodium chloride?",
+    right: "NaCl",
+    wrong: "SCl",
+    wrong2: "Na₂Cl",
+    wrong3: "Na(Cl)₂"
+  },
+  {
+    question: "Which of the following is an example of a covalent bond?",
+    right: "H₂O",
+    wrong: "NaCl",
+    wrong2: "MgO",
+    wrong3: "CaF₂"
+  },
+  {
+    question: "The most abundant element in the Earth's crust is:",
+    right: "Oxygen",
+    wrong: "Silicon",
+    wrong2: "Aluminum",
+    wrong3: "Iron"
+  },
+  {
+    question: "What is the chemical symbol for gold?",
+    right: "Au",
+    wrong: "Ag",
+    wrong2: "Pt",
+    wrong3: "Pb"
+  },
+  {
+    question: "The process of separating a solid from a liquid by pouring off the liquid is called:",
+    right: "Decantation",
+    wrong: "Filtration",
+    wrong2: "Distillation",
+    wrong3: "Evaporation"
+  },
+  {
+    question: "What is the pH of a solution with a pOH of 4?",
+    right: "10",
+    wrong: "4",
+    wrong2: "7",
+    wrong3: "14"
+  },
+  {
+    question: "The energy required to remove an electron from a neutral atom in its gaseous state is called:",
+    right: "Ionization energy",
+    wrong: "Electron affinity",
+    wrong2: "Electronegativity",
+    wrong3: "Binding energy"
+  },
+  {
+    question: "Which of the following is a saturated hydrocarbon?",
+    right: "Propane",
+    wrong: "Ethene",
+    wrong2: "Butene",
+    wrong3: "Propyne"
+  },
+  {
+    question: "The process of converting a liquid into a gas below its boiling point is:",
+    right: "Evaporation",
+    wrong: "Boiling",
+    wrong2: "Condensation",
+    wrong3: "Sublimation"
+  },
+  {
+    question: "What is the molar mass of H₂O?",
+    right: "18 g/mol",
+    wrong: "16 g/mol",
+    wrong2: "2 g/mol",
+    wrong3: "1 g/mol"
+  },
+  {
+    question: "The type of isomerism in which compounds have the same molecular formula but a different order of linkage of atoms is called:",
+    right: "Structural isomerism",
+    wrong: "Geometrical isomerism",
+    wrong2: "Optical isomerism",
+    wrong3: "Tautomerism"
+  },
+  {
+    question: "Which of the following is the most acidic oxide?",
+    right: "SO₃",
+    wrong: "Na₂O",
+    wrong2: "MgO",
+    wrong3: "Al₂O₃"
+  },
+  {
+    question: "The principle that states that a system at equilibrium will counteract a change to restore equilibrium is:",
+    right: "Le Chatelier's principle",
+    wrong: "Hess's law",
+    wrong2: "The law of mass action",
+    wrong3: "The first law of thermodynamics"
+  },
+  {
+    question: "What is the common name for the compound CH₃OCH₃?",
+    right: "Dimethyl ether",
+    wrong: "Diethyl ether",
+    wrong2: "Methanol",
+    wrong3: "Ethanol"
+  },
+
+  // Physics
+  {
+    question: "The force of attraction between two masses is described by:",
+    right: "Newton's Law of Universal Gravitation",
+    wrong: "Ohm's Law",
+    wrong2: "Coulomb's Law",
+    wrong3: "Hooke's Law"
+  },
+  {
+    question: "The SI unit of frequency is:",
+    right: "Hertz",
+    wrong: "Newton",
+    wrong2: "Joule",
+    wrong3: "Watt"
+  },
+  {
+    question: "Which of the following is a scalar quantity?",
+    right: "Speed",
+    wrong: "Velocity",
+    wrong2: "Acceleration",
+    wrong3: "Force"
+  },
+  {
+    question: "The law of conservation of energy states that energy cannot be:",
+    right: "Created or destroyed",
+    wrong: "Converted to other forms",
+    wrong2: "Transferred from one object to another",
+    wrong3: "Used to do work"
+  },
+  {
+    question: "The unit of resistance is:",
+    right: "Ohm",
+    wrong: "Volt",
+    wrong2: "Ampere",
+    wrong3: "Watt"
+  },
+  {
+    question: "A concave lens is a:",
+    right: "Diverging lens",
+    wrong: "Converging lens",
+    wrong2: "Magnifying lens",
+    wrong3: "Plano-convex lens"
+  },
+  {
+    question: "The phenomenon where light bends as it passes from one medium to another is called:",
+    right: "Refraction",
+    wrong: "Reflection",
+    wrong2: "Diffraction",
+    wrong3: "Interference"
+  },
+  {
+    question: "The rate of change of momentum is equal to the net:",
+    right: "Force",
+    wrong: "Velocity",
+    wrong2: "Acceleration",
+    wrong3: "Energy"
+  },
+  {
+    question: "The heat capacity of a substance is the amount of heat required to raise its temperature by:",
+    right: "1°C",
+    wrong: "1 K",
+    wrong2: "10°C",
+    wrong3: "10 K"
+  },
+  {
+    question: "What is the SI unit of electric power?",
+    right: "Watt",
+    wrong: "Joule",
+    wrong2: "Volt",
+    wrong3: "Ampere"
+  },
+  {
+    question: "The mass of a body is a measure of its:",
+    right: "Inertia",
+    wrong: "Weight",
+    wrong2: "Volume",
+    wrong3: "Density"
+  },
+  {
+    question: "Which of the following describes the relationship between voltage, current, and resistance?",
+    right: "Ohm's Law",
+    wrong: "Kirchhoff's Law",
+    wrong2: "Coulomb's Law",
+    wrong3: "Faraday's Law"
+  },
+  {
+    question: "The process of a solid changing directly into a gas without passing through the liquid state is called:",
+    right: "Sublimation",
+    wrong: "Melting",
+    wrong2: "Evaporation",
+    wrong3: "Condensation"
+  },
+  {
+    question: "The energy an object possesses due to its motion is:",
+    right: "Kinetic energy",
+    wrong: "Potential energy",
+    wrong2: "Thermal energy",
+    wrong3: "Chemical energy"
+  },
+  {
+    question: "The time taken for a wave to complete one full cycle is called its:",
+    right: "Period",
+    wrong: "Frequency",
+    wrong2: "Amplitude",
+    wrong3: "Wavelength"
+  },
+  {
+    question: "Which of the following is a vector quantity?",
+    right: "Acceleration",
+    wrong: "Mass",
+    wrong2: "Time",
+    wrong3: "Temperature"
+  },
+  {
+    question: "The force that opposes motion between two surfaces in contact is:",
+    right: "Friction",
+    wrong: "Gravity",
+    wrong2: "Tension",
+    wrong3: "Normal force"
+  },
+  {
+    question: "What is the SI unit of magnetic flux?",
+    right: "Weber",
+    wrong: "Tesla",
+    wrong2: "Henry",
+    wrong3: "Ohm"
+  },
+  {
+    question: "The color of light is determined by its:",
+    right: "Frequency",
+    wrong: "Amplitude",
+    wrong2: "Speed",
+    wrong3: "Intensity"
+  },
+  {
+    question: "The principle behind the operation of a simple electric motor is:",
+    right: "Electromagnetic induction",
+    wrong: "Ohm's Law",
+    wrong2: "Coulomb's Law",
+    wrong3: "Newton's Third Law"
+  },
+
+  // Logical Reasoning & English
+  {
+    question: "Complete the sequence: 2, 5, 10, 17, 26, ?",
+    right: "37",
+    wrong: "35",
+    wrong2: "38",
+    wrong3: "40"
+  },
+  {
+    question: "If 'BELOW' is written as 'AFKNV', how will 'LIGHT' be written?",
+    right: "KJHGR",
+    wrong: "KJDHS",
+    wrong2: "MJFIS",
+    wrong3: "MJHIU"
+  },
+  {
+    question: "If A is older than B, and C is younger than A but older than B, who is the youngest?",
+    right: "B",
+    wrong: "A",
+    wrong2: "C",
+    wrong3: "Cannot be determined"
+  },
+  {
+    question: "Choose the word that is a synonym for 'benevolent'.",
+    right: "Kind",
+    wrong: "Cruel",
+    wrong2: "Greedy",
+    wrong3: "Selfish"
+  },
+  {
+    question: "Choose the antonym for 'exquisite'.",
+    right: "Ordinary",
+    wrong: "Beautiful",
+    wrong2: "Elegant",
+    wrong3: "Delicate"
+  },
+  {
+    question: "A group of crows is called a:",
+    right: "Murder",
+    wrong: "Flock",
+    wrong2: "Herd",
+    wrong3: "Pod"
+  },
+  {
+    question: "If all squares are rectangles, and some rectangles are triangles, then:",
+    right: "Some triangles are squares",
+    wrong: "All squares are triangles",
+    wrong2: "No squares are triangles",
+    wrong3: "Some squares are triangles"
+  },
+  {
+    question: "What comes next in the sequence? J, F, M, A, M, J, J, A, S, ?",
+    right: "O",
+    wrong: "S",
+    wrong2: "N",
+    wrong3: "D"
+  },
+  {
+    question: "If 'CAT' is coded as '3120', 'DOG' is coded as '4157', then 'BAT' is coded as:",
+    right: "2120",
+    wrong: "2125",
+    wrong2: "220",
+    wrong3: "320"
+  },
+  {
+    question: "Choose the correct spelling:",
+    right: "Accommodate",
+    wrong: "Acommodate",
+    wrong2: "Accommodate",
+    wrong3: "Acomodate"
+  },
+  {
+    question: "Find the odd one out: Car, Bus, Train, Helicopter.",
+    right: "Helicopter",
+    wrong: "Car",
+    wrong2: "Bus",
+    wrong3: "Train"
+  },
+  {
+    question: "If today is Sunday, what day will it be in 60 days?",
+    right: "Friday",
+    wrong: "Monday",
+    wrong2: "Wednesday",
+    wrong3: "Saturday"
+  },
+  {
+    question: "Choose the word that means the same as 'garrulous'.",
+    right: "Talkative",
+    wrong: "Silent",
+    wrong2: "Reserved",
+    wrong3: "Quiet"
+  },
+  {
+    question: "A person who studies rocks is a:",
+    right: "Geologist",
+    wrong: "Biologist",
+    wrong2: "Astronomer",
+    wrong3: "Chemist"
+  },
+  {
+    question: "What is the capital of Australia?",
+    right: "Canberra",
+    wrong: "Sydney",
+    wrong2: "Melbourne",
+    wrong3: "Brisbane"
+  },
+  {
+    question: "If a=1, b=2, c=3, what is the value of (a+b)*c?",
+    right: "9",
+    wrong: "6",
+    wrong2: "12",
+    wrong3: "3"
+  },
+  {
+    question: "Choose the word with the correct prefix:",
+    right: "Impossible",
+    wrong: "Inpossible",
+    wrong2: "Unpossible",
+    wrong3: "Dispossible"
+  },
+  {
+    question: "Find the missing number: 1, 4, 9, 16, 25, ?",
+    right: "36",
+    wrong: "30",
+    wrong2: "49",
+    wrong3: "64"
+  },
+  {
+    question: "What is the opposite of 'optimistic'?",
+    right: "Pessimistic",
+    wrong: "Realistic",
+    wrong2: "Idealistic",
+    wrong3: "Optimistic"
+  },
+  {
+    question: "The sun rises in the East and sets in the:",
+    right: "West",
+    wrong: "North",
+    wrong2: "South",
+    wrong3: "East"
+  },
+
+  // Biology
+  {
+    question: "The process by which organisms maintain a stable internal environment is called:",
+    right: "Homeostasis",
+    wrong: "Metabolism",
+    wrong2: "Reproduction",
+    wrong3: "Evolution"
+  },
+  {
+    question: "The primary site of gas exchange in the lungs is the:",
+    right: "Alveoli",
+    wrong: "Bronchioles",
+    wrong2: "Trachea",
+    wrong3: "Pharynx"
+  },
+  {
+    question: "Which of the following is a type of asexual reproduction?",
+    right: "Budding",
+    wrong: "Fertilization",
+    wrong2: "Pollination",
+    wrong3: "Gametogenesis"
+  },
+  {
+    question: "The main function of the large intestine is to:",
+    right: "Absorb water",
+    wrong: "Digest proteins",
+    wrong2: "Digest fats",
+    wrong3: "Absorb carbohydrates"
+  },
+  {
+    question: "What is the genetic material of most living organisms?",
+    right: "DNA",
+    wrong: "RNA",
+    wrong2: "Protein",
+    wrong3: "Lipid"
+  },
+
+  // Chemistry
+  {
+    question: "What is the formula for sulfuric acid?",
+    right: "H₂SO₄",
+    wrong: "HCl",
+    wrong2: "HNO₃",
+    wrong3: "H₃PO₄"
+  },
+  {
+    question: "The process of a substance dissolving in a solvent to form a solution is called:",
+    right: "Solvation",
+    wrong: "Crystallization",
+    wrong2: "Precipitation",
+    wrong3: "Sublimation"
+  },
+  {
+    question: "Which of the following is an allotrope of carbon?",
+    right: "Diamond",
+    wrong: "Silicon",
+    wrong2: "Sulfur",
+    wrong3: "Phosphorus"
+  },
+  {
+    question: "What is the pH of a solution with a hydrogen ion concentration of 1 x 10⁻⁴ M?",
+    right: "4",
+    wrong: "10",
+    wrong2: "7",
+    wrong3: "14"
+  },
+  {
+    question: "The number of protons in an atom's nucleus is its:",
+    right: "Atomic number",
+    wrong: "Mass number",
+    wrong2: "Atomic mass",
+    wrong3: "Isotope number"
+  },
+
+  // Physics
+  {
+    question: "What is the SI unit of force?",
+    right: "Newton",
+    wrong: "Joule",
+    wrong2: "Watt",
+    wrong3: "Pascal"
+  },
+  {
+    question: "The energy an object has due to its position in a gravitational field is:",
+    right: "Potential energy",
+    wrong: "Kinetic energy",
+    wrong2: "Chemical energy",
+    wrong3: "Thermal energy"
+  },
+  {
+    question: "Which of the following is a conductor of electricity?",
+    right: "Copper",
+    wrong: "Glass",
+    wrong2: "Rubber",
+    wrong3: "Plastic"
+  },
+  {
+    question: "The relationship between force, mass, and acceleration is described by:",
+    right: "Newton's Second Law",
+    wrong: "Newton's First Law",
+    wrong2: "Newton's Third Law",
+    wrong3: "The Law of Conservation of Energy"
+  },
+  {
+    question: "The instrument used to measure electric current is a:",
+    right: "Ammeter",
+    wrong: "Voltmeter",
+    wrong2: "Ohmmeter",
+    wrong3: "Galvanometer"
+  },
+  
+  // Logical Reasoning & English
+  {
+    question: "Which word is an antonym for 'transient'?",
+    right: "Permanent",
+    wrong: "Temporary",
+    wrong2: "Fleeting",
+    wrong3: "Brief"
+  },
+  {
+    question: "If 'EAT' is to 'TEA', then 'LIVE' is to:",
+    right: "EVIL",
+    wrong: "VILE",
+    wrong2: "LIve",
+    wrong3: "VEIL"
+  },
+  {
+    question: "Find the odd one out: Mango, Apple, Banana, Potato.",
+    right: "Potato",
+    wrong: "Mango",
+    wrong2: "Apple",
+    wrong3: "Banana"
+  },
+  {
+    question: "Complete the proverb: A bird in the hand is worth two in the...",
+    right: "Bush",
+    wrong: "Tree",
+    wrong2: "Sky",
+    wrong3: "Nest"
+  },
+  {
+    question: "Choose the correct preposition: He is good _____ math.",
+    right: "at",
+    wrong: "in",
+    wrong2: "on",
+    wrong3: "with"
+  },
+
+  // Biology
+  {
+    question: "The process of a cell dividing into two daughter cells is called:",
+    right: "Mitosis",
+    wrong: "Meiosis",
+    wrong2: "Fusion",
+    wrong3: "Fission"
+  },
+  {
+    question: "Which of the following is a producer in an ecosystem?",
+    right: "Plant",
+    wrong: "Lion",
+    wrong2: "Mushroom",
+    wrong3: "Bacteria"
+  },
+  {
+    question: "What is the study of fungi called?",
+    right: "Mycology",
+    wrong: "Botany",
+    wrong2: "Zoology",
+    wrong3: "Microbiology"
+  },
+  {
+    question: "The pigment responsible for the green color of plants is:",
+    right: "Chlorophyll",
+    wrong: "Melanin",
+    wrong2: "Hemoglobin",
+    wrong3: "Carotene"
+  },
+  {
+    question: "Which organelle is responsible for protein synthesis?",
+    right: "Ribosome",
+    wrong: "Mitochondria",
+    wrong2: "Nucleus",
+    wrong3: "Golgi apparatus"
+  },
+
+  // Chemistry
+  {
+    question: "The process of an atom gaining an electron is called:",
+    right: "Reduction",
+    wrong: "Oxidation",
+    wrong2: "Hydrolysis",
+    wrong3: "Polymerization"
+  },
+  {
+    question: "What is the common name for the compound NaHCO₃?",
+    right: "Baking soda",
+    wrong: "Table salt",
+    wrong2: "Washing soda",
+    wrong3: "Bleaching powder"
+  },
+  {
+    question: "The group of elements that are highly reactive and tend to form cations is the:",
+    right: "Alkali metals",
+    wrong: "Halogens",
+    wrong2: "Noble gases",
+    wrong3: "Alkaline earth metals"
+  },
+  {
+    question: "The smallest particle of a substance that can exist on its own and retain its chemical properties is a:",
+    right: "Molecule",
+    wrong: "Atom",
+    wrong2: "Ion",
+    wrong3: "Proton"
+  },
+  {
+    question: "The law of conservation of mass states that mass cannot be:",
+    right: "Created or destroyed",
+    wrong: "Transferred",
+    wrong2: "Converted",
+    wrong3: "Measured"
+  },
+
+  // Physics
+  {
+    question: "The energy stored in a spring is a form of:",
+    right: "Potential energy",
+    wrong: "Kinetic energy",
+    wrong2: "Thermal energy",
+    wrong3: "Chemical energy"
+  },
+  {
+    question: "What is the SI unit of work?",
+    right: "Joule",
+    wrong: "Watt",
+    wrong2: "Newton",
+    wrong3: "Pascal"
+  },
+  {
+    question: "The time it takes for half of the atoms in a radioactive sample to decay is called:",
+    right: "Half-life",
+    wrong: "Decay rate",
+    wrong2: "Half-decay",
+    wrong3: "Nuclear age"
+  },
+  {
+    question: "Which of the following is used to measure temperature?",
+    right: "Thermometer",
+    wrong: "Barometer",
+    wrong2: "Ammeter",
+    wrong3: "Voltmeter"
+  },
+  {
+    question: "The property of an object that resists a change in its rotational motion is:",
+    right: "Moment of inertia",
+    wrong: "Torque",
+    wrong2: "Angular velocity",
+    wrong3: "Angular momentum"
+  }
+];
+</script>
